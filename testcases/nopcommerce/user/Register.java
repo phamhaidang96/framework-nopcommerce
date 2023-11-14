@@ -13,7 +13,7 @@ public class Register extends BaseTest {
 	@BeforeClass
 	public void beforeClass() {
 		getBroserDriver("chrome");
-		sleepInSecond(1);
+		sleepInSecond(2);
 	}
 
 	@Test
