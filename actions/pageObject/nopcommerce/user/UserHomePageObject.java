@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import common.BasePage;
 import common.PageGeneratorManager;
+import io.qameta.allure.Step;
 import pageUIs.nopcommerce.user.UserHomePageUI;
 
 public class UserHomePageObject extends BasePage {
@@ -13,6 +14,7 @@ public class UserHomePageObject extends BasePage {
 		this.driver = driver;
 	}
 
+	@Step("Open 'Register' page")
 	public UserRegisterPageObject openRegisterPage() {
 		waitForElementClickable(driver, UserHomePageUI.REGISTER_LINK);
 		clickToElement(driver, UserHomePageUI.REGISTER_LINK);

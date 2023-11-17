@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite parallel="false" name="Suite">
-	<parameter name = "environment" value = "userStaging"/>
-
-  <test name="Run on Chorme">
-	<parameter name = "browser" value = "chrome"/>
+<suite parallel="false" name="Nopcommerce">
+	<listeners>
+		<listener class-name = "reportConfig.AllureTestListener" />
+	</listeners>
 	
-    <classes>
-      <class name="nopcommerce.user.Register"/>
-    </classes>
-  </test> 
+	<parameter name = "environment" value = "userStaging"/>
+  	<test name="Run on Chorme">
+		<parameter name = "browser" value = "chrome"/>
+	    <classes>
+	      <class name="nopcommerce.user.Register"/>
+	    </classes>
+  	</test> 
   
 </suite>
