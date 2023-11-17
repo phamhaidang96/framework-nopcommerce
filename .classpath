@@ -37,5 +37,6 @@
 	<classpathentry kind="lib" path="libWebDriverManager/jna-5.12.1.jar"/>
 	<classpathentry kind="lib" path="libWebDriverManager/slf4j-api-2.0.7.jar"/>
 	<classpathentry kind="lib" path="libWebDriverManager/webdrivermanager-5.5.0.jar"/>
+	<classpathentry kind="lib" path="libOwner/owner-1.0.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

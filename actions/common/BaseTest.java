@@ -13,7 +13,7 @@ public class BaseTest {
 	private WebDriver driver;
 	protected final Log log;
 
-	protected WebDriver getBroserDriver(String browserName) {
+	protected WebDriver getBrowserDriver(String browserName, String environmentUrl) {
 		if (browserName.contains("chrome")) {
 			driver = WebDriverManager.chromedriver().create();
 		}
@@ -22,9 +22,17 @@ public class BaseTest {
 			driver = WebDriverManager.firefoxdriver().create();
 		}
 
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		else if (browserName.contains("edge")) {
+			driver = WebDriverManager.edgedriver().create();
+		}
+
+		else if (browserName.contains("safari")) {
+			driver = WebDriverManager.safaridriver().create();
+		}
+
+		driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.get("https://demo.nopcommerce.com/");
+		driver.get(environmentUrl);
 		return driver;
 	}
 

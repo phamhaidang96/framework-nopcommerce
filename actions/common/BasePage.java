@@ -19,7 +19,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
-	private WebDriverWait expicitWait;
 	private long longTimeOut = GlobalConstants.LONG_TIMEOUT;
 	private long shortTimeOut = GlobalConstants.SHORT_TIMEOUT;
 
@@ -63,7 +62,7 @@ public class BasePage {
 	}
 
 	public Alert waitAlertPresence(WebDriver driver) {
-		expicitWait = new WebDriverWait(driver, longTimeOut);
+		WebDriverWait expicitWait = new WebDriverWait(driver, longTimeOut);
 		return expicitWait.until(ExpectedConditions.alertIsPresent());
 	}
 
@@ -124,16 +123,16 @@ public class BasePage {
 	private By getLocator(String locatorType) {
 		By by = null;
 		if (locatorType.startsWith("css=") || locatorType.startsWith("Css=")) {
-			locatorType.substring(4);
+			locatorType = locatorType.substring(4);
 			by = By.cssSelector(locatorType);
 		} else if (locatorType.startsWith("xpath=") || locatorType.startsWith("Xpath=")) {
-			locatorType.substring(6);
+			locatorType = locatorType.substring(6);
 			by = By.xpath(locatorType);
 		} else if (locatorType.startsWith("id=") || locatorType.startsWith("Id=")) {
-			locatorType.substring(3);
+			locatorType = locatorType.substring(3);
 			by = By.id(locatorType);
 		} else if (locatorType.startsWith("class=") || locatorType.startsWith("Class=")) {
-			locatorType.substring(6);
+			locatorType = locatorType.substring(6);
 			by = By.id(locatorType);
 		}
 		return by;
