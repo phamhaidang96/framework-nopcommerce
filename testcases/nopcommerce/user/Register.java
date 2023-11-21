@@ -62,7 +62,7 @@ public class Register extends BaseTest {
 	public void TC_02_Register_Invalid_Email() {
 		userRegisterPage = userHomePage.openRegisterPage();
 
-		userRegisterPage.inputToFirstName(firstName);
+		userRegisterPage.inputToFirstNameTextbox(firstName);
 		userRegisterPage.inputToLastNameTextbox(lastName);
 		userRegisterPage.inputToEmailTextbox(firstName);
 		userRegisterPage.inputToPasswordTextbox(password);
@@ -78,7 +78,7 @@ public class Register extends BaseTest {
 	public void TC_03_Register_Password_Less_Than_6_Charactor() {
 		userRegisterPage.refreshCurrentPage(driver);
 
-		userRegisterPage.inputToFirstName(firstName);
+		userRegisterPage.inputToFirstNameTextbox(firstName);
 		userRegisterPage.inputToLastNameTextbox(lastName);
 		userRegisterPage.inputToEmailTextbox(emailRandom);
 		userRegisterPage.inputToPasswordTextbox(invalidPassword);
@@ -95,7 +95,7 @@ public class Register extends BaseTest {
 	public void TC_04_Register_Invalid_Confirm_Password() {
 		userRegisterPage.refreshCurrentPage(driver);
 
-		userRegisterPage.inputToFirstName(firstName);
+		userRegisterPage.inputToFirstNameTextbox(firstName);
 		userRegisterPage.inputToLastNameTextbox(lastName);
 		userRegisterPage.inputToEmailTextbox(emailRandom);
 		userRegisterPage.inputToPasswordTextbox(password);
@@ -112,7 +112,7 @@ public class Register extends BaseTest {
 	public void TC_05_Register_Successfully() {
 		userRegisterPage.refreshCurrentPage(driver);
 
-		userRegisterPage.inputToFirstName(firstName);
+		userRegisterPage.inputToFirstNameTextbox(firstName);
 		userRegisterPage.inputToLastNameTextbox(lastName);
 		userRegisterPage.inputToEmailTextbox(emailRandom);
 		userRegisterPage.inputToPasswordTextbox(password);
@@ -128,7 +128,7 @@ public class Register extends BaseTest {
 	public void TC_06_Register_Existing_Email() {
 		userRegisterPage = userHomePage.openRegisterPage();
 
-		userRegisterPage.inputToFirstName(firstName);
+		userRegisterPage.inputToFirstNameTextbox(firstName);
 		userRegisterPage.inputToLastNameTextbox(lastName);
 		userRegisterPage.inputToEmailTextbox(emailRandom);
 		userRegisterPage.inputToPasswordTextbox(password);

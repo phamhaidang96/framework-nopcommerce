@@ -14,5 +14,5 @@ public class UserRegisterPageUI {
 	public static final String CONFIRM_PASSWORD_TEXTBOX = "id=ConfirmPassword";
 	public static final String REGISTER_BUTTON = "id=register-button";
 	public static final String REGISTER_SUCCESS_MESSAGE = "css=div.result";
-	public static final String EXISTING_EAMIL_MESSAGE = "css=div.message-error";
+	public static final String EXISTING_EMAIL_MESSAGE = "css=div.message-error";
 }

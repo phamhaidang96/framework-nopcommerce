@@ -110,8 +110,6 @@ public class BaseTest {
 	}
 
 	protected int randNumber() {
-//		Random rand = new Random();
-//		return rand.nextInt(99999);
 		return new Random().nextInt(99999);
 	}
 

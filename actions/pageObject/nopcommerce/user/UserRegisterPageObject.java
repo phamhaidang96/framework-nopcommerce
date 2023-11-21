@@ -44,7 +44,7 @@ public class UserRegisterPageObject extends BasePage {
 	}
 
 	@Step("Input to 'First Name' textbox with value is '" + "{0}'")
-	public void inputToFirstName(String firstName) {
+	public void inputToFirstNameTextbox(String firstName) {
 		waitForElementVisible(driver, UserRegisterPageUI.FIRST_NAME_TEXTBOX);
 		sendkeyToElement(driver, UserRegisterPageUI.FIRST_NAME_TEXTBOX, firstName);
 	}
@@ -87,8 +87,17 @@ public class UserRegisterPageObject extends BasePage {
 
 	@Step("Verify existing email display at Register page")
 	public String getEmailExistingErrorMessage() {
-		waitForElementVisible(driver, UserRegisterPageUI.EXISTING_EAMIL_MESSAGE);
-		return getElementText(driver, UserRegisterPageUI.EXISTING_EAMIL_MESSAGE);
+		waitForElementVisible(driver, UserRegisterPageUI.EXISTING_EMAIL_MESSAGE);
+		return getElementText(driver, UserRegisterPageUI.EXISTING_EMAIL_MESSAGE);
 	}
 
+	@Step("Register new user account")
+	public void RegisterNewAccount(String firstName, String lastName, String email, String password) {
+		inputToFirstNameTextbox(firstName);
+		inputToLastNameTextbox(lastName);
+		inputToEmailTextbox(email);
+		inputToPasswordTextbox(password);
+		inputToConfirmPasswordTextbox(password);
+		clickToRegisterButton();
+	}
 }
