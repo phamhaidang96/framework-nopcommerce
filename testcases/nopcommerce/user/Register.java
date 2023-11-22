@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import common.BaseTest;
 import common.PageGeneratorManager;
+import data.nopcommerce.user.UserRegisterDataMapper;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -23,6 +24,7 @@ public class Register extends BaseTest {
 	private UserHomePageObject userHomePage;
 	private UserRegisterPageObject userRegisterPage;
 	private String firstName, lastName, emailRandom, password, invalidPassword;
+	private UserRegisterDataMapper userRegisterData;
 
 	@Parameters({ "browser", "environment" })
 	@BeforeClass
@@ -31,14 +33,14 @@ public class Register extends BaseTest {
 		evnironment = ConfigFactory.create(Environment.class);
 
 		driver = getBrowserDriver(browserName, evnironment.url());
-
 		userHomePage = PageGeneratorManager.getUserHomePage(driver);
 
-		firstName = "auto";
-		lastName = "Test";
-		emailRandom = "Autotest" + randNumber() + "@gmail.net";
-		password = "Hai_dang1";
-		invalidPassword = "12345";
+		userRegisterData = UserRegisterDataMapper.getUserData();
+		firstName = userRegisterData.getFirstName();
+		lastName = userRegisterData.getLastName();
+		emailRandom = userRegisterData.getEmail() + randNumber() + "@gmail.net";
+		password = userRegisterData.getPassword();
+		invalidPassword = userRegisterData.getInvalidPassword();
 	}
 
 	@Description("Register with empty data")

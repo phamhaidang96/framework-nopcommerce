@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import common.BaseTest;
 import common.PageGeneratorManager;
+import data.nopcommerce.user.UserRegisterDataMapper;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -24,6 +25,7 @@ public class Login extends BaseTest {
 	private UserHomePageObject userHomePage;
 	private UserLoginPageObject userLoginPage;
 	private UserRegisterPageObject userRegisterPage;
+	private UserRegisterDataMapper userRegisterData;
 	private String emailRandom, password, invalidEmail, incorrectPassword, notRegisterEmail;
 	private String firstName, lastName;
 
@@ -36,13 +38,14 @@ public class Login extends BaseTest {
 		driver = getBrowserDriver(browserName, environment.url());
 		userHomePage = PageGeneratorManager.getUserHomePage(driver);
 
-		firstName = "auto";
-		lastName = "Test";
-		emailRandom = "Autotest" + randNumber() + "@gmail.net";
-		password = "Hai_dang1";
-		invalidEmail = "test";
+		userRegisterData = UserRegisterDataMapper.getUserData();
+		firstName = userRegisterData.getFirstName();
+		lastName = userRegisterData.getLastName();
+		emailRandom = userRegisterData.getEmail() + randNumber() + "@gmail.net";
+		password = userRegisterData.getPassword();
+		invalidEmail = userRegisterData.getLastName();
 		incorrectPassword = password + randNumber();
-		notRegisterEmail = "testing" + randNumber() + "@gmail.net";
+		notRegisterEmail = userRegisterData.getEmail() + randNumber() + "@gmail.com";
 
 		userRegisterPage = userHomePage.openRegisterPage();
 		userRegisterPage.RegisterNewAccount(firstName, lastName, emailRandom, password);

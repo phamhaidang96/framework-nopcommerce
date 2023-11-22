@@ -1,0 +1,20 @@
+{
+	"RegisterNewUser": {
+		"firstName": "Automation",
+		"lastName": "Test",
+		"email": "autotest",
+		"password" : "Autotest123_",
+		"invalidPassword" : "12345"
+	},
+	
+	"UpdateUser": {
+		"updateGender": "Male",
+		"updateFirstName": "Testing",
+		"updatelastName": "Auto",
+		"updateDateOfBirth": "1",
+		"updateMonthOfBirth": "August",
+		"updateYearOfBirth": "1996",
+		"updateEmail": "testingauto",
+		"updateCompanyName": "Google"
+	}
+}
