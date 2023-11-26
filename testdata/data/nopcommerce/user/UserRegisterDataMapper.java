@@ -61,4 +61,64 @@ public class UserRegisterDataMapper {
 		return registerNewUser.invalidPassword;
 	}
 
+	@JsonProperty("UpdateUser")
+	private UpdateUser updateUser;
+
+	static class UpdateUser {
+		@JsonProperty("updateGender")
+		private String updateGender;
+
+		@JsonProperty("updateFirstName")
+		private String updateFirstName;
+
+		@JsonProperty("updatelastName")
+		private String updatelastName;
+
+		@JsonProperty("updateDateOfBirth")
+		private String updateDateOfBirth;
+
+		@JsonProperty("updateMonthOfBirth")
+		private String updateMonthOfBirth;
+
+		@JsonProperty("updateYearOfBirth")
+		private String updateYearOfBirth;
+
+		@JsonProperty("updateEmail")
+		private String updateEmail;
+
+		@JsonProperty("updateCompanyName")
+		private String updateCompanyName;
+	}
+
+	public String getUpdateGender() {
+		return updateUser.updateGender;
+	}
+
+	public String getUpdateFirstName() {
+		return updateUser.updateFirstName;
+	}
+
+	public String getUpdatelastName() {
+		return updateUser.updatelastName;
+	}
+
+	public String getUpdateDateOfBirth() {
+		return updateUser.updateDateOfBirth;
+	}
+
+	public String getUpdateMonthOfBirth() {
+		return updateUser.updateMonthOfBirth;
+	}
+
+	public String getUpdateYearOfBirth() {
+		return updateUser.updateYearOfBirth;
+	}
+
+	public String getUpdateEmail() {
+		return updateUser.updateEmail;
+	}
+
+	public String getUpdateCompanyName() {
+		return updateUser.updateCompanyName;
+	}
 }

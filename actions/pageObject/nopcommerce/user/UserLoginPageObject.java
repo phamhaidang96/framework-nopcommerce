@@ -3,6 +3,7 @@ package pageObject.nopcommerce.user;
 import org.openqa.selenium.WebDriver;
 
 import common.BasePage;
+import common.PageGeneratorManager;
 import io.qameta.allure.Step;
 import pageUIs.nopcommerce.user.UserLoginPageUI;
 
@@ -47,5 +48,13 @@ public class UserLoginPageObject extends BasePage {
 	public boolean isMyAccountLinkDisplay() {
 		waitForElementVisible(driver, UserLoginPageUI.MY_ACCOUNT_LINK);
 		return isElementDisplayed(driver, UserLoginPageUI.MY_ACCOUNT_LINK);
+	}
+
+	@Step("Login to Sytem with Email is '" + "{0}'" + "and Password is'" + "{1}'")
+	public UserHomePageObject LoginToSystem(String email, String password) {
+		inputToEmailTextbox(email);
+		inputToPasswordTextbox(password);
+		clickToLoginButton();
+		return PageGeneratorManager.getUserHomePage(driver);
 	}
 }

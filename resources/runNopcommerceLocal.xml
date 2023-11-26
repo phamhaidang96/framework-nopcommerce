@@ -6,9 +6,9 @@
 	
 	<parameter name = "environment" value = "userStaging"/>
   	<test name="Run on Chorme">
-		<parameter name = "browser" value = "chrome"/>
+		<parameter name = "browser" value = "edge"/>
 	    <classes>
-	      <class name="nopcommerce.user.Login"/>
+	      <class name="nopcommerce.user.MyAccount"/>
 	    </classes>
   	</test> 
   

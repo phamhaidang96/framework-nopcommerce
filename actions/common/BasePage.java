@@ -18,6 +18,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageUIs.nopcommerce.user.BasePageUI;
+
 public class BasePage {
 	private long longTimeOut = GlobalConstants.LONG_TIMEOUT;
 	private long shortTimeOut = GlobalConstants.SHORT_TIMEOUT;
@@ -138,6 +140,13 @@ public class BasePage {
 		return by;
 	}
 
+	private String getDynamicXpath(String locatorType, String... dynamicValue) {
+		if (locatorType.startsWith("xpath=") || locatorType.startsWith("Xpath=")) {
+			locatorType = String.format(locatorType, (Object[]) dynamicValue);
+		}
+		return locatorType;
+	}
+
 	public List<WebElement> getListWebElement(WebDriver driver, String locatorType) {
 		return driver.findElements(getLocator(locatorType));
 	}
@@ -146,8 +155,18 @@ public class BasePage {
 		getWebElement(driver, locatorType).click();
 	}
 
+	public void clickToElement(WebDriver driver, String locatorType, String... dynamicValue) {
+		getWebElement(driver, getDynamicXpath(locatorType, dynamicValue)).click();
+	}
+
 	public void sendkeyToElement(WebDriver driver, String locatorType, String textValue) {
 		WebElement element = getWebElement(driver, locatorType);
+		element.clear();
+		element.sendKeys(textValue);
+	}
+
+	public void sendkeyToElement(WebDriver driver, String locatorType, String textValue, String... dynamicValue) {
+		WebElement element = getWebElement(driver, getDynamicXpath(locatorType, dynamicValue));
 		element.clear();
 		element.sendKeys(textValue);
 	}
@@ -355,6 +374,12 @@ public class BasePage {
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getLocator(locatorType)));
 	}
 
+	public void waitForElementVisible(WebDriver driver, String locatorType, String... dynamicValue) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeOut);
+		explicitWait.until(
+				ExpectedConditions.visibilityOfElementLocated(getLocator(getDynamicXpath(locatorType, dynamicValue))));
+	}
+
 	public void waitForAllElementVisible(WebDriver driver, String locatorType) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeOut);
 		explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getLocator(locatorType)));
@@ -382,6 +407,12 @@ public class BasePage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getLocator(locatorType)));
 	}
 
+	public void waitForElementClickable(WebDriver driver, String locatorType, String... dynamicValues) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeOut);
+		explicitWait.until(
+				ExpectedConditions.elementToBeClickable(getLocator(getDynamicXpath(locatorType, dynamicValues))));
+	}
+
 	public void uploadMultipleFiles(WebDriver driver, String locatorType, String... fileNames) {
 		String filePath = GlobalConstants.UPLOAD_FILE_FOLDER;
 		String fullFileName = "";
@@ -393,5 +424,10 @@ public class BasePage {
 		fullFileName = fullFileName.trim();
 
 		getWebElement(driver, locatorType).sendKeys(fullFileName);
+	}
+
+	public void OpenPageAtMyAccountByName(WebDriver driver, String pageName) {
+		waitForElementVisible(driver, BasePageUI.DYNAMIC_PAGES_AT_MY_ACCOUNT_AREA, pageName);
+		clickToElement(driver, BasePageUI.DYNAMIC_PAGES_AT_MY_ACCOUNT_AREA, pageName);
 	}
 }
