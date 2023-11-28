@@ -27,9 +27,9 @@ public class UserLoginPageObject extends BasePage {
 	}
 
 	@Step("Input to 'Email' textbox with value is '" + "{0}'")
-	public void inputToEmailTextbox(String invalidEmail) {
+	public void inputToEmailTextbox(String Email) {
 		waitForElementVisible(driver, UserLoginPageUI.EMAIL_TEXTBOX);
-		sendkeyToElement(driver, UserLoginPageUI.EMAIL_TEXTBOX, invalidEmail);
+		sendkeyToElement(driver, UserLoginPageUI.EMAIL_TEXTBOX, Email);
 	}
 
 	@Step("Get login unsuccessful error message")

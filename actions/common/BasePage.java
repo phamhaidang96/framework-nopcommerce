@@ -173,7 +173,7 @@ public class BasePage {
 
 	public void selectItemInDefaultDropdown(WebDriver driver, String locatorType, String textItem) {
 		Select select = new Select(getWebElement(driver, locatorType));
-		select.deselectByVisibleText(textItem);
+		select.selectByVisibleText(textItem);
 	}
 
 	public String getSelectedItemInDefaultDropdownText(WebDriver driver, String locatorType) {
@@ -268,6 +268,10 @@ public class BasePage {
 
 	public boolean isElementSelected(WebDriver driver, String locatorType) {
 		return getWebElement(driver, locatorType).isSelected();
+	}
+
+	public boolean isElementSelected(WebDriver driver, String locatorType, String... dynamicValue) {
+		return getWebElement(driver, getDynamicXpath(locatorType, dynamicValue)).isSelected();
 	}
 
 	public void switchToFrameIframe(WebDriver driver, String locatorType) {

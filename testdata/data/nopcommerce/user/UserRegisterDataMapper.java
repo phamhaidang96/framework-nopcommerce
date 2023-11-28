@@ -74,8 +74,8 @@ public class UserRegisterDataMapper {
 		@JsonProperty("updatelastName")
 		private String updatelastName;
 
-		@JsonProperty("updateDateOfBirth")
-		private String updateDateOfBirth;
+		@JsonProperty("updateDayOfBirth")
+		private String updateDayOfBirth;
 
 		@JsonProperty("updateMonthOfBirth")
 		private String updateMonthOfBirth;
@@ -102,8 +102,8 @@ public class UserRegisterDataMapper {
 		return updateUser.updatelastName;
 	}
 
-	public String getUpdateDateOfBirth() {
-		return updateUser.updateDateOfBirth;
+	public String getUpdateDayOfBirth() {
+		return updateUser.updateDayOfBirth;
 	}
 
 	public String getUpdateMonthOfBirth() {

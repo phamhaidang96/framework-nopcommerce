@@ -65,7 +65,7 @@ public class Login extends BaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Test
 	public void TC_02_Login_Invalid_Email() {
-		userLoginPage.refreshCurrentPage(driver);
+		userLoginPage = userHomePage.openToLoginPage();
 
 		userLoginPage.inputToEmailTextbox(invalidEmail);
 		userLoginPage.clickToLoginButton();
@@ -77,7 +77,7 @@ public class Login extends BaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Test
 	public void TC_03_Login_Email_Not_Register() {
-		userLoginPage.refreshCurrentPage(driver);
+		userLoginPage = userHomePage.openToLoginPage();
 
 		userLoginPage.inputToEmailTextbox(notRegisterEmail);
 		userLoginPage.clickToLoginButton();
@@ -90,7 +90,7 @@ public class Login extends BaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Test
 	public void TC_04_Login_Registered_Email_And_Do_Not_Input_Passwod() {
-		userLoginPage.refreshCurrentPage(driver);
+		userLoginPage = userHomePage.openToLoginPage();
 
 		userLoginPage.inputToEmailTextbox(emailRandom);
 		userLoginPage.clickToLoginButton();
@@ -103,7 +103,7 @@ public class Login extends BaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Test
 	public void TC_05_Login_Registered_Email_And_Incorrect_Passwod() {
-		userLoginPage.refreshCurrentPage(driver);
+		userLoginPage = userHomePage.openToLoginPage();
 
 		userLoginPage.inputToEmailTextbox(emailRandom);
 		userLoginPage.inputToPasswordTextbox(incorrectPassword);
@@ -117,7 +117,7 @@ public class Login extends BaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Test
 	public void TC_06_Login_Successful() {
-		userLoginPage.refreshCurrentPage(driver);
+		userLoginPage = userHomePage.openToLoginPage();
 
 		userLoginPage.inputToEmailTextbox(emailRandom);
 		userLoginPage.inputToPasswordTextbox(password);

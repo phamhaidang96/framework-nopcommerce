@@ -6,6 +6,7 @@ import pageObject.nopcommerce.user.UserCustomerInfoPageObject;
 import pageObject.nopcommerce.user.UserHomePageObject;
 import pageObject.nopcommerce.user.UserLoginPageObject;
 import pageObject.nopcommerce.user.UserRegisterPageObject;
+import pageObject.nopcommerce.user.UserAddressesPageObject;
 
 public class PageGeneratorManager {
 	public static UserHomePageObject getUserHomePage(WebDriver driver) {
@@ -22,5 +23,9 @@ public class PageGeneratorManager {
 
 	public static UserCustomerInfoPageObject getUserCustomerInfoPage(WebDriver driver) {
 		return new UserCustomerInfoPageObject(driver);
+	}
+
+	public static UserAddressesPageObject getUserAddressesPage(WebDriver driver) {
+		return new UserAddressesPageObject(driver);
 	}
 }

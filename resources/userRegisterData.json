@@ -11,10 +11,10 @@
 		"updateGender": "Male",
 		"updateFirstName": "Testing",
 		"updatelastName": "Auto",
-		"updateDateOfBirth": "1",
+		"updateDayOfBirth": "1",
 		"updateMonthOfBirth": "August",
 		"updateYearOfBirth": "1996",
-		"updateEmail": "testingauto",
+		"updateEmail": "testing1",
 		"updateCompanyName": "Google"
 	}
 }

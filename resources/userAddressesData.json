@@ -1,0 +1,16 @@
+{
+	"Address1": {
+		"firstName" : "Cristiano",
+		"lastName" : "Ronaldo",
+		"email" : "cr7",
+		"company" : "Real Madrid",
+		"country" : "United States",
+		"state" : "Texas",
+		"city" : "Houston",
+		"address1" : "3333 Raleigh St., Houston",
+		"address2" : "City of Houston 901 Bagby Houston, TX 77002",
+		"zipcode" : "77494",
+		"phoneNumber" : "1234567890",
+		"faxNumber" : "0123456789"
+	}
+}
