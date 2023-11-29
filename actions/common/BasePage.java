@@ -430,8 +430,33 @@ public class BasePage {
 		getWebElement(driver, locatorType).sendKeys(fullFileName);
 	}
 
-	public void OpenPageAtMyAccountByName(WebDriver driver, String pageName) {
-		waitForElementVisible(driver, BasePageUI.DYNAMIC_PAGES_AT_MY_ACCOUNT_AREA, pageName);
+	public BasePage openPageAtMyAccountByName(WebDriver driver, String pageName) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_PAGES_AT_MY_ACCOUNT_AREA, pageName);
 		clickToElement(driver, BasePageUI.DYNAMIC_PAGES_AT_MY_ACCOUNT_AREA, pageName);
+		switch (pageName) {
+		case "Customer Info":
+			return PageGeneratorManager.getUserCustomerInfoPage(driver);
+		case "Addresses":
+			return PageGeneratorManager.getUserAddressesPage(driver);
+		case "Change password":
+			return PageGeneratorManager.getUserChangePasswordPage(driver);
+		default:
+			throw new RuntimeException("Invalid page name at My Account area!");
+		}
+	}
+
+	public BasePage openPageAtHeaderByHeaderName(WebDriver driver, String headerName) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_HEADER_LINK, headerName);
+		clickToElement(driver, BasePageUI.DYNAMIC_HEADER_LINK, headerName);
+		switch (headerName) {
+		case "Register":
+			return PageGeneratorManager.getUserRegisterPage(driver);
+		case "Log in":
+			return PageGeneratorManager.getUserLoginPage(driver);
+		case "Log out":
+			return PageGeneratorManager.getUserHomePage(driver);
+		default:
+			throw new RuntimeException("Invalid header name!");
+		}
 	}
 }

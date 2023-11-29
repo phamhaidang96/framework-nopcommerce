@@ -6,7 +6,7 @@
 	
 	<parameter name = "environment" value = "userStaging"/>
   	<test name="Run on Chorme">
-		<parameter name = "browser" value = "firefox"/>
+		<parameter name = "browser" value = "chrome"/>
 	    <classes>
 	      <class name="nopcommerce.user.Register"/>
 	      <class name="nopcommerce.user.Login"/>

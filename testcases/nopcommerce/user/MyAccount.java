@@ -16,6 +16,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import pageObject.nopcommerce.user.UserAddressesPageObject;
+import pageObject.nopcommerce.user.UserChangePasswordPageObject;
 import pageObject.nopcommerce.user.UserCustomerInfoPageObject;
 import pageObject.nopcommerce.user.UserHomePageObject;
 import pageObject.nopcommerce.user.UserLoginPageObject;
@@ -30,7 +31,8 @@ public class MyAccount extends BaseTest {
 	private UserRegisterPageObject userRegisterPage;
 	private UserLoginPageObject userLoginPage;
 	private UserCustomerInfoPageObject userCustomerInfoPage;
-	private String firstName, lastName, email, password;
+	private UserChangePasswordPageObject userChangePasswordPage;
+	private String firstName, lastName, email, password, newPassword;
 	private String updateGender, updatefirstName, updateLastname, dayOfBirth, monthOfBirth, yearOfBirth, updateEmail,
 			updateCompanyName;
 	private UserAddressesPageObject userAddressesPage;
@@ -45,13 +47,12 @@ public class MyAccount extends BaseTest {
 		evn = ConfigFactory.create(Environment.class);
 		driver = getBrowserDriver(browserName, evn.url());
 
-		userHomePage = PageGeneratorManager.getUserHomePage(driver);
 		userRegisterData = UserRegisterDataMapper.getUserData();
-
 		firstName = userRegisterData.getFirstName();
 		lastName = userRegisterData.getLastName();
 		email = userRegisterData.getEmail() + randNumber() + "@gmail.net";
 		password = userRegisterData.getPassword();
+		newPassword = password + randNumber();
 
 		updateGender = userRegisterData.getUpdateGender();
 		updatefirstName = userRegisterData.getUpdateFirstName();
@@ -61,12 +62,6 @@ public class MyAccount extends BaseTest {
 		yearOfBirth = userRegisterData.getUpdateYearOfBirth();
 		updateEmail = userRegisterData.getUpdateEmail() + randNumber() + "@gmail.net";
 		updateCompanyName = userRegisterData.getUpdateCompanyName();
-
-		userRegisterPage = userHomePage.openRegisterPage();
-		userRegisterPage.RegisterNewAccount(firstName, lastName, email, password);
-		userLoginPage = userHomePage.openToLoginPage();
-		userHomePage = userLoginPage.LoginToSystem(email, password);
-		userCustomerInfoPage = userHomePage.openCustomerInfoPage();
 
 		userAddressesData = UserAddressesDataMapper.getUserData();
 		addressFisrtName = userAddressesData.getFirstName();
@@ -81,10 +76,18 @@ public class MyAccount extends BaseTest {
 		addressZipcode = userAddressesData.getZipcode();
 		addressPhoneNumber = userAddressesData.getPhoneNumber();
 		addressFaxNumber = userAddressesData.getFaxNumber();
+
+		userHomePage = PageGeneratorManager.getUserHomePage(driver);
+		userRegisterPage = userHomePage.openRegisterPage();
+		userRegisterPage.RegisterNewAccount(firstName, lastName, email, password);
+		userLoginPage = (UserLoginPageObject) userRegisterPage.openPageAtHeaderByHeaderName(driver, "Log in");
+		userHomePage = userLoginPage.LoginToSystem(email, password);
+		userCustomerInfoPage = userHomePage.openCustomerInfoPage();
 	}
 
 	@Description("Update customer info")
 	@Severity(SeverityLevel.NORMAL)
+	@Test
 	public void TC_01_Update_Customer_Info() {
 		userCustomerInfoPage.selectGenderByText(updateGender);
 		userCustomerInfoPage.inputToFirstNameTextbox(updatefirstName);
@@ -112,8 +115,8 @@ public class MyAccount extends BaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Test
 	public void TC_02_Add_Address() {
-		userCustomerInfoPage.OpenPageAtMyAccountByName(driver, "Addresses");
-		userAddressesPage = PageGeneratorManager.getUserAddressesPage(driver);
+		userAddressesPage = (UserAddressesPageObject) userCustomerInfoPage.openPageAtMyAccountByName(driver,
+				"Addresses");
 
 		userAddressesPage.clickToAddNewButton();
 		userAddressesPage.inputToFirstNameTextbox(addressFisrtName);
@@ -145,9 +148,35 @@ public class MyAccount extends BaseTest {
 		Assert.assertTrue(userAddressesPage.isFaxNumberDisplayed(addressFaxNumber));
 	}
 
+	@Description("Change user password")
+	@Severity(SeverityLevel.NORMAL)
 	@Test
 	public void TC_03_Changer_Password() {
+		userChangePasswordPage = (UserChangePasswordPageObject) userAddressesPage.openPageAtMyAccountByName(driver,
+				"Change password");
 
+		userChangePasswordPage.inputToOldPasswordTextbox(password);
+		userChangePasswordPage.inputToNewPasswordTextbox(newPassword);
+		userChangePasswordPage.inputToConfirmPasswordTextbox(newPassword);
+		userChangePasswordPage.clickToChangePasswordButton();
+
+		Assert.assertEquals(userChangePasswordPage.getChangePasswordSuccessMessage(), "Password was changed");
+		userChangePasswordPage.closeChangePasswordSuccessMessage();
+
+		userHomePage = (UserHomePageObject) userChangePasswordPage.openPageAtHeaderByHeaderName(driver, "Log out");
+
+		userLoginPage = userHomePage.openToLoginPage();
+		userLoginPage.inputToEmailTextbox(updateEmail);
+		userLoginPage.inputToPasswordTextbox(password);
+		userLoginPage.clickToLoginButton();
+		Assert.assertEquals(userLoginPage.getLoginUnsuccessfulErrorMessage(),
+				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
+
+		userLoginPage.inputToEmailTextbox(updateEmail);
+		userLoginPage.inputToPasswordTextbox(newPassword);
+		userLoginPage.clickToLoginButton();
+
+		Assert.assertTrue(userLoginPage.isMyAccountLinkDisplay());
 	}
 
 	@Test

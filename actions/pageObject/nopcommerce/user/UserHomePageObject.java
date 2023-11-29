@@ -8,7 +8,7 @@ import io.qameta.allure.Step;
 import pageUIs.nopcommerce.user.UserHomePageUI;
 
 public class UserHomePageObject extends BasePage {
-	WebDriver driver;
+	private WebDriver driver;
 
 	public UserHomePageObject(WebDriver driver) {
 		this.driver = driver;
