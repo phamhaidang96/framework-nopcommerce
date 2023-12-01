@@ -18,6 +18,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.qameta.allure.Step;
+import pageObject.nopcommerce.user.UserAddProductReviewPageObject;
 import pageUIs.nopcommerce.user.BasePageUI;
 
 public class BasePage {
@@ -234,6 +236,13 @@ public class BasePage {
 		}
 	}
 
+	public void checkToDefaultCheckBoxRadio(WebDriver driver, String locatorType, String... dynamicValue) {
+		WebElement element = getWebElement(driver, getDynamicXpath(locatorType, dynamicValue));
+		if (!element.isSelected()) {
+			element.click();
+		}
+	}
+
 	public void uncheckToDefaultCheckBox(WebDriver driver, String locatorType) {
 		WebElement element = getWebElement(driver, locatorType);
 		if (element.isSelected()) {
@@ -430,6 +439,7 @@ public class BasePage {
 		getWebElement(driver, locatorType).sendKeys(fullFileName);
 	}
 
+	@Step("Open '{1}' page")
 	public BasePage openPageAtMyAccountByName(WebDriver driver, String pageName) {
 		waitForElementClickable(driver, BasePageUI.DYNAMIC_PAGES_AT_MY_ACCOUNT_AREA, pageName);
 		clickToElement(driver, BasePageUI.DYNAMIC_PAGES_AT_MY_ACCOUNT_AREA, pageName);
@@ -440,15 +450,20 @@ public class BasePage {
 			return PageGeneratorManager.getUserAddressesPage(driver);
 		case "Change password":
 			return PageGeneratorManager.getUserChangePasswordPage(driver);
+		case "My product reviews":
+			return PageGeneratorManager.getUserMyProductReviewPage(driver);
 		default:
 			throw new RuntimeException("Invalid page name at My Account area!");
 		}
 	}
 
+	@Step("Open '{1}' page")
 	public BasePage openPageAtHeaderByHeaderName(WebDriver driver, String headerName) {
 		waitForElementClickable(driver, BasePageUI.DYNAMIC_HEADER_LINK, headerName);
 		clickToElement(driver, BasePageUI.DYNAMIC_HEADER_LINK, headerName);
 		switch (headerName) {
+		case "My account":
+			return PageGeneratorManager.getUserCustomerInfoPage(driver);
 		case "Register":
 			return PageGeneratorManager.getUserRegisterPage(driver);
 		case "Log in":
@@ -458,5 +473,29 @@ public class BasePage {
 		default:
 			throw new RuntimeException("Invalid header name!");
 		}
+	}
+
+	@Step("Open '{1}' page")
+	public BasePage openProductAtHeaderMenuByName(WebDriver driver, String productMenu) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_PRODUCT_AT_HEADER_MENU, productMenu);
+		clickToElement(driver, BasePageUI.DYNAMIC_PRODUCT_AT_HEADER_MENU, productMenu);
+		switch (productMenu) {
+		case "Computers":
+			return PageGeneratorManager.getUserComputersPage(driver);
+		default:
+			throw new RuntimeException("Invalid list Product name!");
+		}
+	}
+
+	@Step("Open 'Add product review' page")
+	public UserAddProductReviewPageObject openAddYourReviewPage(WebDriver driver) {
+		if (isElementDisplayed(driver, BasePageUI.ADD_YOUR_REVIEW_LINK)) {
+			waitForElementClickable(driver, BasePageUI.ADD_YOUR_REVIEW_LINK);
+			clickToElement(driver, BasePageUI.ADD_YOUR_REVIEW_LINK);
+		} else {
+			waitForElementClickable(driver, BasePageUI.FIRST_PRODUCT_REVIEW_LINK);
+			clickToElement(driver, BasePageUI.FIRST_PRODUCT_REVIEW_LINK);
+		}
+		return PageGeneratorManager.getUserAddYourReviewPage(driver);
 	}
 }

@@ -1,6 +1,6 @@
 package pageUIs.nopcommerce.user;
 
-public class userAddressesPageUI {
+public class UserAddressesPageUI {
 	public static final String ADD_NEW_BUTTON = "css=button.add-address-button";
 	public static final String FIRST_NAME_TEXTBOX = "css=input#Address_FirstName";
 	public static final String LAST_NAME_TEXTBOX = "css=input#Address_LastName";

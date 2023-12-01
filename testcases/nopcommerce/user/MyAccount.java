@@ -11,34 +11,43 @@ import org.testng.annotations.Test;
 import common.BaseTest;
 import common.PageGeneratorManager;
 import data.nopcommerce.user.UserAddressesDataMapper;
+import data.nopcommerce.user.UserProductReviewDataMapper;
 import data.nopcommerce.user.UserRegisterDataMapper;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import pageObject.nopcommerce.user.UserAddProductReviewPageObject;
 import pageObject.nopcommerce.user.UserAddressesPageObject;
 import pageObject.nopcommerce.user.UserChangePasswordPageObject;
+import pageObject.nopcommerce.user.UserComputersPageObject;
 import pageObject.nopcommerce.user.UserCustomerInfoPageObject;
 import pageObject.nopcommerce.user.UserHomePageObject;
 import pageObject.nopcommerce.user.UserLoginPageObject;
+import pageObject.nopcommerce.user.UserMyProductReviewPageObject;
 import pageObject.nopcommerce.user.UserRegisterPageObject;
 import utilities.Environment;
 
 public class MyAccount extends BaseTest {
 	private WebDriver driver;
 	private Environment evn;
-	private UserRegisterDataMapper userRegisterData;
 	private UserHomePageObject userHomePage;
 	private UserRegisterPageObject userRegisterPage;
 	private UserLoginPageObject userLoginPage;
 	private UserCustomerInfoPageObject userCustomerInfoPage;
 	private UserChangePasswordPageObject userChangePasswordPage;
+	private UserAddressesPageObject userAddressesPage;
+	private UserComputersPageObject userComputersPage;
+	private UserAddProductReviewPageObject userAddProductReviewPage;
+	private UserMyProductReviewPageObject userMyProductReviewPage;
+	private UserRegisterDataMapper userRegisterData;
 	private String firstName, lastName, email, password, newPassword;
 	private String updateGender, updatefirstName, updateLastname, dayOfBirth, monthOfBirth, yearOfBirth, updateEmail,
 			updateCompanyName;
-	private UserAddressesPageObject userAddressesPage;
 	private UserAddressesDataMapper userAddressesData;
 	private String addressFisrtName, addressLastName, addressEmail, addressCompany, addressCountry, addressState,
 			addressCity, address1, address2, addressZipcode, addressPhoneNumber, addressFaxNumber;
+	private UserProductReviewDataMapper userProductReviewData;
+	private String reviewTitle, reviewText, randomRating, ratingPercent;
 
 	@Parameters({ "browser", "environment" })
 	@BeforeClass
@@ -76,6 +85,12 @@ public class MyAccount extends BaseTest {
 		addressZipcode = userAddressesData.getZipcode();
 		addressPhoneNumber = userAddressesData.getPhoneNumber();
 		addressFaxNumber = userAddressesData.getFaxNumber();
+
+		userProductReviewData = UserProductReviewDataMapper.getUserData();
+		reviewTitle = userProductReviewData.getReviewTitle();
+		reviewText = userProductReviewData.getReviewText();
+		randomRating = String.valueOf(randNumber(1, 5));
+		ratingPercent = Integer.valueOf(randomRating) * 20 + "%";
 
 		userHomePage = PageGeneratorManager.getUserHomePage(driver);
 		userRegisterPage = userHomePage.openRegisterPage();
@@ -179,9 +194,27 @@ public class MyAccount extends BaseTest {
 		Assert.assertTrue(userLoginPage.isMyAccountLinkDisplay());
 	}
 
+	@Description("Add new product review")
+	@Severity(SeverityLevel.NORMAL)
 	@Test
 	public void TC_04_Add_Product_review() {
+		userComputersPage = (UserComputersPageObject) userLoginPage.openProductAtHeaderMenuByName(driver, "Computers");
 
+		userComputersPage.openSublistProductAtHeaderMenuByName("Desktops");
+		userComputersPage.clickToFirstProductTitle();
+
+		userAddProductReviewPage = userComputersPage.openAddYourReviewPage(driver);
+		userAddProductReviewPage.addNewProductReview(reviewTitle, reviewText, randomRating);
+
+		userCustomerInfoPage = (UserCustomerInfoPageObject) userAddProductReviewPage
+				.openPageAtHeaderByHeaderName(driver, "My account");
+
+		userMyProductReviewPage = (UserMyProductReviewPageObject) userCustomerInfoPage.openPageAtMyAccountByName(driver,
+				"My product reviews");
+
+		Assert.assertEquals(userMyProductReviewPage.getReviewTitle(), reviewTitle);
+		Assert.assertEquals(userMyProductReviewPage.getReviewText(), reviewText);
+		Assert.assertEquals(userMyProductReviewPage.getReviewRating(), "width: " + ratingPercent + ";");
 	}
 
 	@AfterClass(alwaysRun = true)

@@ -2,12 +2,16 @@ package common;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeSuite;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -27,7 +31,14 @@ public class BaseTest {
 
 	protected WebDriver getBrowserDriver(String browserName, String environmentUrl) {
 		if (browserName.contains("chrome")) {
-			driver = WebDriverManager.chromedriver().create();
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			Map<String, Object> prefs = new HashMap<String, Object>();
+			prefs.put("profile.default_content_setting_values.notifications", 2);
+			prefs.put("autofill.profile_enabled", false);
+			options.setExperimentalOption("prefs", prefs);
+
+			driver = new ChromeDriver(options);
 		}
 
 		else if (browserName.contains("firefox")) {
@@ -111,6 +122,10 @@ public class BaseTest {
 
 	protected int randNumber() {
 		return new Random().nextInt(99999);
+	}
+
+	protected int randNumber(int minNumber, int maxNumber) {
+		return new Random().nextInt(maxNumber - minNumber + 1) + minNumber;
 	}
 
 	public WebDriver getDriverInstance() {
