@@ -43,31 +43,31 @@ public class UserRegisterPageObject extends BasePage {
 		return getElementText(driver, UserRegisterPageUI.CONFIRM_PASSWORD_ERROR_MESSAGE);
 	}
 
-	@Step("Input to 'First Name' textbox with value is '" + "{0}'")
+	@Step("Input to 'First Name' textbox with value is '{0}'")
 	public void inputToFirstNameTextbox(String firstName) {
 		waitForElementVisible(driver, UserRegisterPageUI.FIRST_NAME_TEXTBOX);
 		sendkeyToElement(driver, UserRegisterPageUI.FIRST_NAME_TEXTBOX, firstName);
 	}
 
-	@Step("Input to 'Last Name' textbox with value is '" + "{0}'")
+	@Step("Input to 'Last Name' textbox with value is '{0}'")
 	public void inputToLastNameTextbox(String lastName) {
 		waitForElementVisible(driver, UserRegisterPageUI.LAST_NAME_TEXTBOX);
 		sendkeyToElement(driver, UserRegisterPageUI.LAST_NAME_TEXTBOX, lastName);
 	}
 
-	@Step("Input to 'Email' textbox with value is '" + "{0}'")
+	@Step("Input to 'Email' textbox with value is '{0}'")
 	public void inputToEmailTextbox(String emailRandom) {
 		waitForElementVisible(driver, UserRegisterPageUI.EMAIL_TEXTBOX);
 		sendkeyToElement(driver, UserRegisterPageUI.EMAIL_TEXTBOX, emailRandom);
 	}
 
-	@Step("Input to 'Password' textbox with value is '" + "{0}'")
+	@Step("Input to 'Password' textbox with value is '{0}'")
 	public void inputToPasswordTextbox(String password) {
 		waitForElementVisible(driver, UserRegisterPageUI.PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, UserRegisterPageUI.PASSWORD_TEXTBOX, password);
 	}
 
-	@Step("Input to 'Confirm password' textbox with value is '" + "{0}'")
+	@Step("Input to 'Confirm password' textbox with value is '{0}'")
 	public void inputToConfirmPasswordTextbox(String confirmPassword) {
 		waitForElementVisible(driver, UserRegisterPageUI.CONFIRM_PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, UserRegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, confirmPassword);

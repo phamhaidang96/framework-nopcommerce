@@ -200,7 +200,7 @@ public class MyAccount extends BaseTest {
 	public void TC_04_Add_Product_review() {
 		userComputersPage = (UserComputersPageObject) userLoginPage.openProductAtHeaderMenuByName(driver, "Computers");
 
-		userComputersPage.openSublistProductAtHeaderMenuByName("Desktops");
+		userComputersPage.openPageAtMenuComputersSublistByName("Desktops");
 		userComputersPage.clickToFirstProductTitle();
 
 		userAddProductReviewPage = userComputersPage.openAddYourReviewPage(driver);

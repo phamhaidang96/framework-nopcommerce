@@ -26,7 +26,7 @@ public class UserLoginPageObject extends BasePage {
 		return getElementText(driver, UserLoginPageUI.EMAIL_ERROR_MESSAGE);
 	}
 
-	@Step("Input to 'Email' textbox with value is '" + "{0}'")
+	@Step("Input to 'Email' textbox with value is '{0}'")
 	public void inputToEmailTextbox(String Email) {
 		waitForElementVisible(driver, UserLoginPageUI.EMAIL_TEXTBOX);
 		sendkeyToElement(driver, UserLoginPageUI.EMAIL_TEXTBOX, Email);
@@ -38,7 +38,7 @@ public class UserLoginPageObject extends BasePage {
 		return getElementText(driver, UserLoginPageUI.LOGIN_UNSUCCESSFUL_ERROR_MESSAGE);
 	}
 
-	@Step("Input to 'Password' textbox with value is '" + "{0}'")
+	@Step("Input to 'Password' textbox with value is '{0}'")
 	public void inputToPasswordTextbox(String incorrectPassword) {
 		waitForElementVisible(driver, UserLoginPageUI.PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, UserLoginPageUI.PASSWORD_TEXTBOX, incorrectPassword);
@@ -50,7 +50,7 @@ public class UserLoginPageObject extends BasePage {
 		return isElementDisplayed(driver, UserLoginPageUI.MY_ACCOUNT_LINK);
 	}
 
-	@Step("Login to Sytem with Email is '" + "{0}'" + "and Password is'" + "{1}'")
+	@Step("Login to Sytem with Email is '{0}' and Password is'{1}'")
 	public UserHomePageObject LoginToSystem(String email, String password) {
 		inputToEmailTextbox(email);
 		inputToPasswordTextbox(password);

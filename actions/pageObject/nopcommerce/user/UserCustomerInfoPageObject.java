@@ -13,49 +13,49 @@ public class UserCustomerInfoPageObject extends BasePage {
 		this.driver = driver;
 	}
 
-	@Step("Select Gender with value is '" + "{0}'")
+	@Step("Select Gender with value is '{0}'")
 	public void selectGenderByText(String updateGender) {
 		waitForElementClickable(driver, UserCustomerInfoPageUI.DYNAMIC_GENDER_RADIO_BUTTON, updateGender);
 		clickToElement(driver, UserCustomerInfoPageUI.DYNAMIC_GENDER_RADIO_BUTTON, updateGender);
 	}
 
-	@Step("Input to Fisrt name textbox with value is '" + "{0}'")
+	@Step("Input to Fisrt name textbox with value is '{0}'")
 	public void inputToFirstNameTextbox(String updatefirstName) {
 		waitForElementVisible(driver, UserCustomerInfoPageUI.FIRST_NAME_TEXTBOX);
 		sendkeyToElement(driver, UserCustomerInfoPageUI.FIRST_NAME_TEXTBOX, updatefirstName);
 	}
 
-	@Step("Input to Last name textbox with value is '" + "{0}'")
+	@Step("Input to Last name textbox with value is '{0}'")
 	public void inputToLastNameTextbox(String updateLastname) {
 		waitForElementVisible(driver, UserCustomerInfoPageUI.LAST_NAME_TEXTBOX);
 		sendkeyToElement(driver, UserCustomerInfoPageUI.LAST_NAME_TEXTBOX, updateLastname);
 	}
 
-	@Step("Select Day of birth with value is '" + "{0}'")
+	@Step("Select Day of birth with value is '{0}'")
 	public void selectDayOfBirthDropdown(String dayOfBirth) {
 		waitForElementVisible(driver, UserCustomerInfoPageUI.DAY_OF_BIRTH_DROPDOWN);
 		selectItemInDefaultDropdown(driver, UserCustomerInfoPageUI.DAY_OF_BIRTH_DROPDOWN, dayOfBirth);
 	}
 
-	@Step("Select Month of birth with value is '" + "{0}'")
+	@Step("Select Month of birth with value is '{0}'")
 	public void selectMonthOfBirthDropdown(String monthOfBirth) {
 		waitForElementVisible(driver, UserCustomerInfoPageUI.MONTH_OF_BIRTH_DROPDOWN);
 		selectItemInDefaultDropdown(driver, UserCustomerInfoPageUI.MONTH_OF_BIRTH_DROPDOWN, monthOfBirth);
 	}
 
-	@Step("Select Year of birth with value is '" + "{0}'")
+	@Step("Select Year of birth with value is '{0}'")
 	public void selectYearOfBirthDropdown(String yearOfBirth) {
 		waitForElementVisible(driver, UserCustomerInfoPageUI.YEAR_OF_BIRTH_DROPDOWN);
 		selectItemInDefaultDropdown(driver, UserCustomerInfoPageUI.YEAR_OF_BIRTH_DROPDOWN, yearOfBirth);
 	}
 
-	@Step("Input to Email textbox with value is '" + "{0}'")
+	@Step("Input to Email textbox with value is '{0}'")
 	public void inputToEmailTextbox(String updateEmail) {
 		waitForElementVisible(driver, UserCustomerInfoPageUI.EMAIL_TEXTBOX);
 		sendkeyToElement(driver, UserCustomerInfoPageUI.EMAIL_TEXTBOX, updateEmail);
 	}
 
-	@Step("Input to Company name textbox with value is '" + "{0}'")
+	@Step("Input to Company name textbox with value is '{0}'")
 	public void inputToCompanyNameTextbox(String updateCompanyName) {
 		waitForElementVisible(driver, UserCustomerInfoPageUI.COMPANY_NAME_TEXTBOX);
 		sendkeyToElement(driver, UserCustomerInfoPageUI.COMPANY_NAME_TEXTBOX, updateCompanyName);
@@ -73,7 +73,7 @@ public class UserCustomerInfoPageObject extends BasePage {
 		return getElementText(driver, UserCustomerInfoPageUI.UPDATE_CUSTOMER_INFO_SUCCESS_MESSAGE);
 	}
 
-	@Step("Verify Gender is updated with value is '" + "{0}'")
+	@Step("Verify Gender is updated with value is '{0}'")
 	public boolean isGenderUpdated(String genderText) {
 		waitForElementVisible(driver, UserCustomerInfoPageUI.DYNAMIC_GENDER_RADIO_BUTTON, genderText);
 		return isElementSelected(driver, UserCustomerInfoPageUI.DYNAMIC_GENDER_RADIO_BUTTON, genderText);

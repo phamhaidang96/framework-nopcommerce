@@ -19,73 +19,73 @@ public class UserAddressesPageObject extends BasePage {
 		clickToElement(driver, UserAddressesPageUI.ADD_NEW_BUTTON);
 	}
 
-	@Step("Input to First name textbox with value is '" + "{0}'")
+	@Step("Input to First name textbox with value is '{0}'")
 	public void inputToFirstNameTextbox(String addressFisrtName) {
 		waitForElementVisible(driver, UserAddressesPageUI.FIRST_NAME_TEXTBOX);
 		sendkeyToElement(driver, UserAddressesPageUI.FIRST_NAME_TEXTBOX, addressFisrtName);
 	}
 
-	@Step("Input to Last name textbox with value is '" + "{0}'")
+	@Step("Input to Last name textbox with value is '{0}'")
 	public void inputToLastNameTextbox(String addressLastName) {
 		waitForElementVisible(driver, UserAddressesPageUI.LAST_NAME_TEXTBOX);
 		sendkeyToElement(driver, UserAddressesPageUI.LAST_NAME_TEXTBOX, addressLastName);
 	}
 
-	@Step("Input to Email textbox with value is '" + "{0}'")
+	@Step("Input to Email textbox with value is '{0}'")
 	public void inputToEmailTextbox(String addressEmail) {
 		waitForElementVisible(driver, UserAddressesPageUI.EMAIL_TEXTBOX);
 		sendkeyToElement(driver, UserAddressesPageUI.EMAIL_TEXTBOX, addressEmail);
 	}
 
-	@Step("Input to Company textbox with value is '" + "{0}'")
+	@Step("Input to Company textbox with value is '{0}'")
 	public void inputToCompanyTextbox(String addressCompany) {
 		waitForElementVisible(driver, UserAddressesPageUI.COMPANY_TEXTBOX);
 		sendkeyToElement(driver, UserAddressesPageUI.COMPANY_TEXTBOX, addressCompany);
 	}
 
-	@Step("Select Country dropdown with value is '" + "{0}'")
+	@Step("Select Country dropdown with value is '{0}'")
 	public void selectCountryDropdown(String addressCountry) {
 		waitForElementVisible(driver, UserAddressesPageUI.COUNTRY_DROPDOWN);
 		selectItemInDefaultDropdown(driver, UserAddressesPageUI.COUNTRY_DROPDOWN, addressCountry);
 	}
 
-	@Step("Select State dropdown with value is '" + "{0}'")
+	@Step("Select State dropdown with value is '{0}'")
 	public void selectStateDropdown(String addressState) {
 		waitForElementUndisplay(driver, UserAddressesPageUI.STATES_LOADING_ICON);
 		selectItemInDefaultDropdown(driver, UserAddressesPageUI.STATE_DROPDOWN, addressState);
 	}
 
-	@Step("Input to City textbox with value is '" + "{0}'")
+	@Step("Input to City textbox with value is '{0}'")
 	public void inputToCityTextbox(String addressCity) {
 		waitForElementVisible(driver, UserAddressesPageUI.CITY_TEXTBOX);
 		sendkeyToElement(driver, UserAddressesPageUI.CITY_TEXTBOX, addressCity);
 	}
 
-	@Step("Input to Address1 textbox with value is '" + "{0}'")
+	@Step("Input to Address1 textbox with value is '{0}'")
 	public void inputToAddress1Textbox(String address1) {
 		waitForElementVisible(driver, UserAddressesPageUI.ADDRESS1_TEXTBOX);
 		sendkeyToElement(driver, UserAddressesPageUI.ADDRESS1_TEXTBOX, address1);
 	}
 
-	@Step("Input to Address2 textbox with value is '" + "{0}'")
+	@Step("Input to Address2 textbox with value is '{0}'")
 	public void inputToAddress2Textbox(String address2) {
 		waitForElementVisible(driver, UserAddressesPageUI.ADDRESS2_TEXTBOX);
 		sendkeyToElement(driver, UserAddressesPageUI.ADDRESS2_TEXTBOX, address2);
 	}
 
-	@Step("Input to Zip code textbox with value is '" + "{0}'")
+	@Step("Input to Zip code textbox with value is '{0}'")
 	public void inputToZipcodeTextbox(String addressZipcode) {
 		waitForElementVisible(driver, UserAddressesPageUI.ZIPCODE_TEXTBOX);
 		sendkeyToElement(driver, UserAddressesPageUI.ZIPCODE_TEXTBOX, addressZipcode);
 	}
 
-	@Step("Input to Phone number textbox with value is '" + "{0}'")
+	@Step("Input to Phone number textbox with value is '{0}'")
 	public void inputToPhoneNumberTextbox(String addressPhoneNumber) {
 		waitForElementVisible(driver, UserAddressesPageUI.PHONE_NUMNER_TEXTBOX);
 		sendkeyToElement(driver, UserAddressesPageUI.PHONE_NUMNER_TEXTBOX, addressPhoneNumber);
 	}
 
-	@Step("Input to Fax number textbox with value is '" + "{0}'")
+	@Step("Input to Fax number textbox with value is '{0}'")
 	public void inputToFaxNumberTextbox(String addressFaxNumber) {
 		waitForElementVisible(driver, UserAddressesPageUI.FAX_NUMNER_TEXTBOX);
 		sendkeyToElement(driver, UserAddressesPageUI.FAX_NUMNER_TEXTBOX, addressFaxNumber);

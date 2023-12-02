@@ -13,19 +13,19 @@ public class UserAddProductReviewPageObject extends BasePage {
 		this.driver = driver;
 	}
 
-	@Step("Input to Review title with value is '" + "{0}'")
+	@Step("Input to Review title with value is '{0}'")
 	public void inputToReviewTitleTextbox(String reviewTitle) {
 		waitForElementVisible(driver, UserAddProductReviewPageUI.REVIEW_TITLE_TEXTBOX);
 		sendkeyToElement(driver, UserAddProductReviewPageUI.REVIEW_TITLE_TEXTBOX, reviewTitle);
 	}
 
-	@Step("Input to Review text with value is '" + "{0}'")
+	@Step("Input to Review text with value is '{0}'")
 	public void inputToReviewtextTextarea(String reviewText) {
 		waitForElementVisible(driver, UserAddProductReviewPageUI.REVIEW_TEXT_TEXTAREA);
 		sendkeyToElement(driver, UserAddProductReviewPageUI.REVIEW_TEXT_TEXTAREA, reviewText);
 	}
 
-	@Step("Select Rating radio button with rating is '" + "{0}' star")
+	@Step("Select Rating radio button with rating is '{0}' star")
 	public void selectRatingRadioButton(String randomRating) {
 		waitForElementClickable(driver, UserAddProductReviewPageUI.DYNAMIC_RATING_RADIO_BUTTON, randomRating);
 		checkToDefaultCheckBoxRadio(driver, UserAddProductReviewPageUI.DYNAMIC_RATING_RADIO_BUTTON, randomRating);

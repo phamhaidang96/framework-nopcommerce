@@ -13,19 +13,19 @@ public class UserChangePasswordPageObject extends BasePage {
 		this.driver = driver;
 	}
 
-	@Step("Input to Old password with value is '" + "{0}'")
+	@Step("Input to Old password with value is '{0}'")
 	public void inputToOldPasswordTextbox(String password) {
 		waitForElementVisible(driver, UserChangePasswordPageUI.OLD_PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, UserChangePasswordPageUI.OLD_PASSWORD_TEXTBOX, password);
 	}
 
-	@Step("Input to New password with value is '" + "{0}'")
+	@Step("Input to New password with value is '{0}'")
 	public void inputToNewPasswordTextbox(String newPassword) {
 		waitForElementVisible(driver, UserChangePasswordPageUI.NEW_PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, UserChangePasswordPageUI.NEW_PASSWORD_TEXTBOX, newPassword);
 	}
 
-	@Step("Input to Confirm password with value is '" + "{0}'")
+	@Step("Input to Confirm password with value is '{0}'")
 	public void inputToConfirmPasswordTextbox(String confirmPassword) {
 		waitForElementVisible(driver, UserChangePasswordPageUI.CONFIRM_PASSWORD_TEXTBOX);
 		sendkeyToElement(driver, UserChangePasswordPageUI.CONFIRM_PASSWORD_TEXTBOX, confirmPassword);
