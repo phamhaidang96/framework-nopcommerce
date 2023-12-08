@@ -2,16 +2,17 @@
 <suite parallel="false" name="Nopcommerce">
 	<listeners>
 		<listener class-name = "reportConfig.AllureTestListener" />
+		<listener class-name = "reportConfig.MethodListener" />
 	</listeners>
 	
 	<parameter name = "environment" value = "userStaging"/>
   	<test name="Run on Chorme">
-		<parameter name = "browser" value = "edge"/>
+		<parameter name = "browser" value = "chrome"/>
 	    <classes>
 <!--	      <class name="nopcommerce.user.Register"/>-->
 <!--	      <class name="nopcommerce.user.Login"/>-->
 <!--	      <class name="nopcommerce.user.MyAccount"/>-->
-	      <class name="nopcommerce.user.SortDisplayPaging"/>
+	      <class name="nopcommerce.user.Register"/>
 	    </classes>
   	</test> 
   

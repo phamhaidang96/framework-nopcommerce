@@ -436,7 +436,7 @@ public class BasePage {
 
 		fullFileName = fullFileName.trim();
 
-		getWebElement(driver, locatorType).sendKeys(fullFileName);
+		sendkeyToElement(driver, locatorType, fullFileName);
 	}
 
 	@Step("Open '{1}' page")

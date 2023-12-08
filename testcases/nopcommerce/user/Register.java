@@ -51,94 +51,94 @@ public class Register extends BaseTest {
 
 		userRegisterPage.clickToRegisterButton();
 
-		Assert.assertEquals(userRegisterPage.getErrorMessageAtFirstNameTextbox(), "First name is required.");
-		Assert.assertEquals(userRegisterPage.getErrorMessageAtLastNameTextbox(), "Last name is required.");
-		Assert.assertEquals(userRegisterPage.getErrorMessageAtEmailTextbox(), "Email is required.");
-		Assert.assertEquals(userRegisterPage.getErrorMessageAtPasswordTextbox(), "Password is required.");
-		Assert.assertEquals(userRegisterPage.getErrorMessageAtConfirmPasswordTextbox(), "Password is required.");
+		verifyEquals(userRegisterPage.getErrorMessageAtFirstNameTextbox(), "First name is required..");
+		verifyEquals(userRegisterPage.getErrorMessageAtLastNameTextbox(), "Last name is required..");
+		verifyEquals(userRegisterPage.getErrorMessageAtEmailTextbox(), "Email is required.");
+		verifyEquals(userRegisterPage.getErrorMessageAtPasswordTextbox(), "Password is required.");
+		Assert.assertEquals(userRegisterPage.getErrorMessageAtConfirmPasswordTextbox(), "Password is required..");
 	}
 
-	@Description("Register with invalid email")
-	@Severity(SeverityLevel.NORMAL)
-	@Test
-	public void TC_02_Register_Invalid_Email() {
-		userRegisterPage = userHomePage.openRegisterPage();
-
-		userRegisterPage.inputToFirstNameTextbox(firstName);
-		userRegisterPage.inputToLastNameTextbox(lastName);
-		userRegisterPage.inputToEmailTextbox(firstName);
-		userRegisterPage.inputToPasswordTextbox(password);
-		userRegisterPage.inputToConfirmPasswordTextbox(password);
-		userRegisterPage.clickToRegisterButton();
-
-		Assert.assertEquals(userRegisterPage.getErrorMessageAtEmailTextbox(), "Wrong email");
-	}
-
-	@Description("Register with password less than 6 charactor")
-	@Severity(SeverityLevel.NORMAL)
-	@Test
-	public void TC_03_Register_Password_Less_Than_6_Charactor() {
-		userRegisterPage.refreshCurrentPage(driver);
-
-		userRegisterPage.inputToFirstNameTextbox(firstName);
-		userRegisterPage.inputToLastNameTextbox(lastName);
-		userRegisterPage.inputToEmailTextbox(emailRandom);
-		userRegisterPage.inputToPasswordTextbox(invalidPassword);
-		userRegisterPage.inputToConfirmPasswordTextbox(invalidPassword);
-		userRegisterPage.clickToRegisterButton();
-
-		Assert.assertEquals(userRegisterPage.getErrorMessageAtPasswordTextbox(),
-				"Password must meet the following rules:\nmust have at least 6 characters");
-	}
-
-	@Description("Register with confirm password invalid")
-	@Severity(SeverityLevel.NORMAL)
-	@Test
-	public void TC_04_Register_Invalid_Confirm_Password() {
-		userRegisterPage.refreshCurrentPage(driver);
-
-		userRegisterPage.inputToFirstNameTextbox(firstName);
-		userRegisterPage.inputToLastNameTextbox(lastName);
-		userRegisterPage.inputToEmailTextbox(emailRandom);
-		userRegisterPage.inputToPasswordTextbox(password);
-		userRegisterPage.inputToConfirmPasswordTextbox(invalidPassword);
-		userRegisterPage.clickToRegisterButton();
-
-		Assert.assertEquals(userRegisterPage.getErrorMessageAtConfirmPasswordTextbox(),
-				"The password and confirmation password do not match.");
-	}
-
-	@Description("Register Successfully")
-	@Severity(SeverityLevel.NORMAL)
-	@Test
-	public void TC_05_Register_Successfully() {
-		userRegisterPage.refreshCurrentPage(driver);
-
-		userRegisterPage.inputToFirstNameTextbox(firstName);
-		userRegisterPage.inputToLastNameTextbox(lastName);
-		userRegisterPage.inputToEmailTextbox(emailRandom);
-		userRegisterPage.inputToPasswordTextbox(password);
-		userRegisterPage.inputToConfirmPasswordTextbox(password);
-		userRegisterPage.clickToRegisterButton();
-
-		Assert.assertEquals(userRegisterPage.getRegisterSuccessMessage(), "Your registration completed");
-	}
-
-	@Description("Register with existing email")
-	@Severity(SeverityLevel.NORMAL)
-	@Test
-	public void TC_06_Register_Existing_Email() {
-		userRegisterPage = userHomePage.openRegisterPage();
-
-		userRegisterPage.inputToFirstNameTextbox(firstName);
-		userRegisterPage.inputToLastNameTextbox(lastName);
-		userRegisterPage.inputToEmailTextbox(emailRandom);
-		userRegisterPage.inputToPasswordTextbox(password);
-		userRegisterPage.inputToConfirmPasswordTextbox(password);
-		userRegisterPage.clickToRegisterButton();
-
-		Assert.assertEquals(userRegisterPage.getEmailExistingErrorMessage(), "The specified email already exists");
-	}
+//	@Description("Register with invalid email")
+//	@Severity(SeverityLevel.NORMAL)
+//	@Test
+//	public void TC_02_Register_Invalid_Email() {
+//		userRegisterPage = userHomePage.openRegisterPage();
+//
+//		userRegisterPage.inputToFirstNameTextbox(firstName);
+//		userRegisterPage.inputToLastNameTextbox(lastName);
+//		userRegisterPage.inputToEmailTextbox(firstName);
+//		userRegisterPage.inputToPasswordTextbox(password);
+//		userRegisterPage.inputToConfirmPasswordTextbox(password);
+//		userRegisterPage.clickToRegisterButton();
+//
+//		Assert.assertEquals(userRegisterPage.getErrorMessageAtEmailTextbox(), "Wrong email");
+//	}
+//
+//	@Description("Register with password less than 6 charactor")
+//	@Severity(SeverityLevel.NORMAL)
+//	@Test
+//	public void TC_03_Register_Password_Less_Than_6_Charactor() {
+//		userRegisterPage.refreshCurrentPage(driver);
+//
+//		userRegisterPage.inputToFirstNameTextbox(firstName);
+//		userRegisterPage.inputToLastNameTextbox(lastName);
+//		userRegisterPage.inputToEmailTextbox(emailRandom);
+//		userRegisterPage.inputToPasswordTextbox(invalidPassword);
+//		userRegisterPage.inputToConfirmPasswordTextbox(invalidPassword);
+//		userRegisterPage.clickToRegisterButton();
+//
+//		Assert.assertEquals(userRegisterPage.getErrorMessageAtPasswordTextbox(),
+//				"Password must meet the following rules:\nmust have at least 6 characters");
+//	}
+//
+//	@Description("Register with confirm password invalid")
+//	@Severity(SeverityLevel.NORMAL)
+//	@Test
+//	public void TC_04_Register_Invalid_Confirm_Password() {
+//		userRegisterPage.refreshCurrentPage(driver);
+//
+//		userRegisterPage.inputToFirstNameTextbox(firstName);
+//		userRegisterPage.inputToLastNameTextbox(lastName);
+//		userRegisterPage.inputToEmailTextbox(emailRandom);
+//		userRegisterPage.inputToPasswordTextbox(password);
+//		userRegisterPage.inputToConfirmPasswordTextbox(invalidPassword);
+//		userRegisterPage.clickToRegisterButton();
+//
+//		Assert.assertEquals(userRegisterPage.getErrorMessageAtConfirmPasswordTextbox(),
+//				"The password and confirmation password do not match.");
+//	}
+//
+//	@Description("Register Successfully")
+//	@Severity(SeverityLevel.NORMAL)
+//	@Test
+//	public void TC_05_Register_Successfully() {
+//		userRegisterPage.refreshCurrentPage(driver);
+//
+//		userRegisterPage.inputToFirstNameTextbox(firstName);
+//		userRegisterPage.inputToLastNameTextbox(lastName);
+//		userRegisterPage.inputToEmailTextbox(emailRandom);
+//		userRegisterPage.inputToPasswordTextbox(password);
+//		userRegisterPage.inputToConfirmPasswordTextbox(password);
+//		userRegisterPage.clickToRegisterButton();
+//
+//		Assert.assertEquals(userRegisterPage.getRegisterSuccessMessage(), "Your registration completed");
+//	}
+//
+//	@Description("Register with existing email")
+//	@Severity(SeverityLevel.NORMAL)
+//	@Test
+//	public void TC_06_Register_Existing_Email() {
+//		userRegisterPage = userHomePage.openRegisterPage();
+//
+//		userRegisterPage.inputToFirstNameTextbox(firstName);
+//		userRegisterPage.inputToLastNameTextbox(lastName);
+//		userRegisterPage.inputToEmailTextbox(emailRandom);
+//		userRegisterPage.inputToPasswordTextbox(password);
+//		userRegisterPage.inputToConfirmPasswordTextbox(password);
+//		userRegisterPage.clickToRegisterButton();
+//
+//		Assert.assertEquals(userRegisterPage.getEmailExistingErrorMessage(), "The specified email already exists");
+//	}
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {

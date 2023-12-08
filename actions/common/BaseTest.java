@@ -12,6 +12,8 @@ import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -147,6 +149,48 @@ public class BaseTest {
 		} catch (Exception e) {
 			System.out.print(e.getMessage());
 		}
+	}
+
+	protected boolean verifyTrue(boolean condition) {
+		boolean status = true;
+		try {
+			Assert.assertTrue(condition);
+			log.info("---------------------- Passed -----------------------");
+		} catch (Throwable e) {
+			status = false;
+			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+			Reporter.getCurrentTestResult().setThrowable(e);
+			log.info("---------------------- Failed -----------------------");
+		}
+		return status;
+	}
+
+	protected boolean verifyFalse(boolean condition) {
+		boolean status = true;
+		try {
+			Assert.assertFalse(condition);
+			log.info("---------------------- Passed -----------------------");
+		} catch (Throwable e) {
+			status = false;
+			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+			Reporter.getCurrentTestResult().setThrowable(e);
+			log.info("---------------------- Failed -----------------------");
+		}
+		return status;
+	}
+
+	protected boolean verifyEquals(Object actual, Object expected) {
+		boolean status = true;
+		try {
+			Assert.assertEquals(actual, expected);
+			log.info("---------------------- Passed -----------------------");
+		} catch (Throwable e) {
+			status = false;
+			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+			Reporter.getCurrentTestResult().setThrowable(e);
+			log.info("---------------------- Failed -----------------------");
+		}
+		return status;
 	}
 
 }
