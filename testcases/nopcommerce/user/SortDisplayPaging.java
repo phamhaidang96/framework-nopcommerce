@@ -36,12 +36,48 @@ public class SortDisplayPaging extends BaseTest {
 		userComputersPage.openPageAtMenuComputersSublistByName("Notebooks");
 	}
 
-	@Description("Sort by Name: A - Z")
+	@Description("Sort product by Name ascending")
 	@Severity(SeverityLevel.NORMAL)
 	@Test
-	public void TC_01_Sort_Name_A_Z() {
+	public void TC_01_Sort_Name_Ascending() {
 		userComputersPage.selectToSortByDropdownByOption("Name: A to Z");
 		Assert.assertTrue(userComputersPage.isProductSortByNameAcsending());
+	}
+
+	@Description("Sort product by Name descending")
+	@Severity(SeverityLevel.NORMAL)
+	@Test
+	public void TC_02_Sort_By_Name_Descending() {
+		userComputersPage.selectToSortByDropdownByOption("Name: Z to A");
+		Assert.assertTrue(userComputersPage.isProductSortByNameDescending());
+	}
+
+	@Description("Sort product by price ascending")
+	@Severity(SeverityLevel.NORMAL)
+	@Test
+	public void TC_03_Sort_By_Price_Ascending() {
+		userComputersPage.selectToSortByDropdownByOption("Price: Low to High");
+		Assert.assertTrue(userComputersPage.isProductSortByPriceAcsending());
+	}
+
+	@Description("Sort product by price descending")
+	@Severity(SeverityLevel.NORMAL)
+	@Test
+	public void TC_04_Sort_By_Price_Descending() {
+		userComputersPage.selectToSortByDropdownByOption("Price: High to Low");
+		Assert.assertTrue(userComputersPage.isProductSortByPriceDescending());
+	}
+
+	@Description("Display with 3 product per page")
+	@Severity(SeverityLevel.NORMAL)
+	@Test
+	public void TC_05_Display_3_Products_Per_Page() {
+		userComputersPage.selectToDisplayPerPageDropdownByOption("3");
+		Assert.assertTrue(userComputersPage.isDisplayThreeProductPerPage());
+		Assert.assertTrue(userComputersPage.isNextPagingIconDisplay());
+
+		userComputersPage.clickToNextPagingIcon();
+		Assert.assertTrue(userComputersPage.isPreviousPagingIconDisplay());
 	}
 
 	@AfterClass(alwaysRun = true)
